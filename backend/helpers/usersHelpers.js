@@ -1,5 +1,4 @@
 module.exports = (db) => {
-
     const getUsers = () => {
         const query = {
             text: 'SELECT * FROM users',
@@ -26,10 +25,10 @@ module.exports = (db) => {
     }
   
     //*************************************************************************/
-    const addUser = (name, picture, email, password, age, gender, street_name, city, postal_code, walk_reason, walk_time, interests) => {
+    const addUser = (name, email, password,  city)=> {
         const query = {
-            text: `INSERT INTO users (name, picture, email, password, age, gender, street_name, city, postal_code, walk_reason, walk_time, interests) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *` ,
-            values: [name, picture, email, password, age, gender, street_name, city, postal_code, walk_reason, walk_time, interests]
+            text: `INSERT INTO users (name, email, password, city) VALUES ($1, $2, $3, $4) RETURNING *` ,
+            values: [name, email, password, city]
         }
   
         return db.query(query)

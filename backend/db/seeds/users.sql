@@ -14,3 +14,9 @@ INSERT INTO
 users(name,  email, password, city)
 VALUES
     ('Joey MacDonald', 'joey@macdonald.com', 'test', 'Toronto');
+
+
+INSERT INTO
+users(name,  email, password, city)
+VALUES
+    ('Alice Rayne', 'alice@rayne.com', 'test', 'Oshawa');

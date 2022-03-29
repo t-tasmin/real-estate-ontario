@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {getUsers, addUser, getUserByEmail,getUsersPostalcode} = require('../helpers/dataHelpers');
+const {getUsers, addUser, getUserByEmail,getUsersPostalcode} = require('../helpers/usersHelpers');
 
 module.exports = ({ getUsers, addUser, getUserByEmail,getUsersPostalcode}) => {
     /* GET users listing. */
@@ -13,45 +13,33 @@ module.exports = ({ getUsers, addUser, getUserByEmail,getUsersPostalcode}) => {
     });
 
     router.post('/add', (req, res) => {
-        
         console.log("Data in Backend",req.body);
-
-        let {name, picture, email, password, age, gender, street_name, city, postal_code, walk_reason, walk_time, interests}= req.body;
+        let {name, email, password, city}= req.body;
         
-        
-        
-        getUserByEmail(email)
+         getUserByEmail(email)
             .then(user => {
                 if (user) {
                     res.json({
                         msg: 'Sorry, a user account with this email already exists.'
                     });
                 } else {
-                    return addUser(name, picture, email, password, age, gender, street_name, city, postal_code, walk_reason, walk_time, interests)
+                    return addUser(name, email, password, city)
                 }
-
             })
             .then((newUser) => {
-                
                 res.json(newUser);
-                
             })
             .catch(err => res.json({
                 error: err.message
             }));
-    
-
     })
 
 
 //*************************************************************************/
 
     router.post('/login', (req, res) => {
-
         console.log("Email and password",req.body);
-
         let {email, password}= req.body;
-
 
         getUserByEmail(email)
             .then(user => {
@@ -78,13 +66,7 @@ module.exports = ({ getUsers, addUser, getUserByEmail,getUsersPostalcode}) => {
                             })
 
                         })                
-                        /* getUserByEmail */
-                        // res.json({
-                        //     msg: 'Password Match!',
-                        //     user_email: user.email,
-                        //     postal_code: user.postal_code,
-                            
-                        // });
+                      
                     } /* end of if */
                     else {
                         res.json({
