@@ -1,0 +1,2 @@
+-- run this line on psql directly
+-- \copy  listings FROM 'Housing_Data_Test.csv' DELIMITER ',' CSV HEADER
