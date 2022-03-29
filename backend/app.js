@@ -6,9 +6,11 @@ const logger = require('morgan');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const realtorsRouter = require('./routes/realtors');
+const listingsRouter = require('./routes/listings');
 const db = require('./db');
 const usersHelpers = require('./helpers/usersHelpers')(db);
 const realtorsHelpers = require('./helpers/realtorsHelpers')(db);
+const listlingsHelpers = require('./helpers/listlingsHelpers')(db);
 
 const app = express();
 
@@ -21,6 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/api/users',    usersRouter(usersHelpers));
 app.use('/api/realtors', realtorsRouter(realtorsHelpers));
+app.use('/api/listings', listingsRouter(listlingsHelpers));
 
 
 module.exports = app;

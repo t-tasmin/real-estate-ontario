@@ -7,7 +7,7 @@ CREATE TABLE listings (
     neighbourhood	VARCHAR(50) NOT NULL,
     address	VARCHAR(100) NOT NULL,
     type	VARCHAR(50) NOT NULL,
-    sold_price	INTEGER  NOT NULL,
+    sold_price	VARCHAR(255)  NOT NULL,
     list_price	INTEGER  NOT NULL,
     bedrooms	SMALLINT  NOT NULL,
     bathrooms	SMALLINT  NOT NULL,
