@@ -1,2 +1,4 @@
 node_modules/
 .env
+Housing_Data_Test.csv
+Housing_Data_Clean.csv
