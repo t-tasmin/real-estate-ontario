@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "./Card";
 
-const Listings = ({ listings }) => {
+const Listings = ({listings }) => {
   const getListings = () => {
     let listingsOnPage = [];
     let result = [];
@@ -12,15 +12,12 @@ const Listings = ({ listings }) => {
           title={listing.title}
           address={listing.address}
           city={listing.city}
-          state={listing.state}
-          price={listing.price}
-          sale_type={listing.sale_type}
-          home_type={listing.home_type}
+          sold_price={listing.sold_price}
+          list_price={listing.list_price}
+          home_type={listing.type}
           bedrooms={listing.bedrooms}
           bathrooms={listing.bathrooms}
-          sqft={listing.sqft}
-          photo_main={listing.photo_main}
-          slug={listing.slug}
+          photo_main={listing.image}
         />
       );
     });

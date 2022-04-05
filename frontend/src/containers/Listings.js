@@ -17,10 +17,10 @@ const Listings = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          "http://127.0.0.1:8000/api/listings/?page=1"
+          '/api/listings/'
         );
-
-        setListings(res.data.results);
+        console.log("Data",res.data);
+        setListings(res.data);
         setCount(res.data.count);
         setPrevious(res.data.previous);
         setNext(res.data.next);
@@ -40,15 +40,12 @@ const Listings = () => {
           title={listing.title}
           address={listing.address}
           city={listing.city}
-          state={listing.state}
-          price={listing.price}
-          sale_type={listing.sale_type}
-          home_type={listing.home_type}
+          sold_price={listing.sold_price}
+          list_price={listing.list_price}
+          home_type={listing.type}
           bedrooms={listing.bedrooms}
           bathrooms={listing.bathrooms}
-          sqft={listing.sqft}
-          photo_main={listing.photo_main}
-          slug={listing.slug}
+          photo_main={listing.image}
         />
       );
     });
@@ -74,7 +71,7 @@ const Listings = () => {
 
   const visitPage = (page) => {
     axios
-      .get(`http://127.0.0.1:8000/api/listings/?page=${page}`)
+      .get('/api/listings/')
       .then((res) => {
         setListings(res.data.results);
         setPrevious(res.data.previous);

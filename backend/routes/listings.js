@@ -6,7 +6,9 @@ module.exports = ({ getListings}) => {
     /* GET Listings listing. */
     router.get('/', (req, res) => {
         getListings()
-            .then((listings) => res.json(listings))
+            .then((listings) => {
+                console.log(listings);
+                res.json(listings)})
             .catch((err) => res.json({
                 error: err.message
             }));

@@ -22,7 +22,7 @@ const card = (props) => {
       </p>
       <div className="row">
         <div className="col-2-of-3">
-          <p className="card__info">Price: ${numberWithCommas(props.price)}</p>
+          <p className="card__info">Price: ${props.price}</p>
           <p className="card__info">Bedrooms: {props.bedrooms}</p>
           <p className="card__info">Bathrooms: {props.bathrooms}</p>
         </div>
