@@ -33,9 +33,9 @@ const card = (props) => {
           <p className="card__sqft">Sqft: {props.sqft}</p>
         </div>
       </div>
-      <Link className="card__link" to={`/listings/${props.slug}`}>
+      {/* <Link className="card__link" to={`/listings/${props.slug}`}>
         View Listing
-      </Link>
+      </Link> */}
     </div>
   );
 };

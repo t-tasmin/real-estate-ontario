@@ -38,7 +38,7 @@ const pagination = (props) => {
       <div onClick={() => props.previous()} className="pagination__number">
         Previous
       </div>
-      {getNumbers()}
+      
       <div onClick={() => props.next()} className="pagination__number">
         Next
       </div>

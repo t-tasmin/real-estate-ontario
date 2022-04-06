@@ -2,14 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import axios from "axios";
 import Card from "../components/Card";
-import Pagination from "../components/Pagination";
+
 
 const Listings = () => {
   const [listings, setListings] = useState([]);
   const [count, setCount] = useState(0);
-  const [previous, setPrevious] = useState("");
-  const [next, setNext] = useState("");
-  const [active, setActive] = useState(1);
+  const [page, setPage] = useState(1);
+  
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -17,18 +16,16 @@ const Listings = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          '/api/listings/'
+          `/api/listings?page=${page}&limit=6`
         );
-        console.log("Data",res.data);
-        setListings(res.data);
+        console.log('Data',res.data);
+        setListings(res.data.results);
         setCount(res.data.count);
-        setPrevious(res.data.previous);
-        setNext(res.data.next);
       } catch (err) {}
     };
 
     fetchData();
-  }, []);
+  }, [page]);
 
   const displayListings = () => {
     let display = [];
@@ -69,45 +66,19 @@ const Listings = () => {
     return result;
   };
 
-  const visitPage = (page) => {
-    axios
-      .get('/api/listings/')
-      .then((res) => {
-        setListings(res.data.results);
-        setPrevious(res.data.previous);
-        setNext(res.data.next);
-        setActive(page);
-      })
-      .catch((err) => {});
-  };
-
+  
   const previous_number = () => {
-    axios
-      .get(previous)
-      .then((res) => {
-        setListings(res.data.results);
-        setPrevious(res.data.previous);
-        setNext(res.data.next);
-        if (previous) {
-          setActive(active - 1);
-        }
-      })
-      .catch((err) => {});
+    console.log('Previous pressed');
+    setPage(page-1);
+    
   };
 
   const next_number = () => {
-    axios
-      .get(next)
-      .then((res) => {
-        setListings(res.data.results);
-        setPrevious(res.data.previous);
-        setNext(res.data.next);
-        if (previous) {
-          setActive(active + 1);
-        }
-      })
-      .catch((err) => {});
+    console.log('Next pressed');
+    console.log(page);
+    setPage(page+1);
   };
+
   return (
     <main className="listings">
       <Helmet>
@@ -117,15 +88,8 @@ const Listings = () => {
       <section className="listings__listings">{displayListings()}</section>
       <section className="listings__pagination">
         <div className="row">
-          <Pagination
-            itemsPerPage={3}
-            count={count}
-            visitPage={visitPage}
-            previous={previous_number}
-            next={next_number}
-            active={active}
-            setActive={setActive}
-          />
+        <div onClick={previous_number}> Previous Page </div>
+            <div onClick={next_number}> Next Page </div> 
         </div>
       </section>
     </main>
