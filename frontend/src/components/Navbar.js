@@ -1,88 +1,42 @@
-import React, { Fragment } from "react";
-import { Link, NavLink } from "react-router-dom";
-import { connect } from "react-redux";
-import { logout } from "../actions/auth";
-import Alert from "./Alert";
-import PropTypes from "prop-types";
+import React from "react";
+import { Link} from "react-router-dom";
 
-const navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
-  const authlinks = (
-    <a className="navbar__top__auth__link" onClick={logout} href="#!">
-      Logout
-    </a>
-  );
-
-  const guestLinks = (
-    <Fragment>
-      <Link className="navbar__top__auth__link" to="/login/">
-        Login
-      </Link>
-      <Link className="navbar__top__auth__link" to="/signup/">
-        Sign up
-      </Link>
-    </Fragment>
-  );
-
+const Navbar = () => {
+ 
   return (
-    <Fragment>
-      <nav className="navbar">
-        <div className="navbar__top">
-          <div className="navbar__top__logo">
-            <Link className="navbar__top__logo__link" to="/">
-              Realest Estate
-            </Link>
-          </div>
-          <div className="navbar__top__auth">
-            {!loading && (
-              <Fragment>{isAuthenticated ? authlinks : guestLinks}</Fragment>
-            )}
-          </div>
-        </div>
-        <div className="navbar__bottom">
-          <li className="navbar__bottom__item">
-            <NavLink className="navbar__bottom__item__link" exact to="/">
+    <nav>
+      <div className="content-left">
+        <img src="/images/house_logo.png" class="logo" />
+          <Link className="title" to='/'>
               Home
-            </NavLink>
-          </li>
-
-          <li className="navbar__bottom__item">
-            <NavLink
-              className="navbar__bottom__item__link"
-              exact
-              to="/listings/"
-            >
+          </Link>
+          <Link className="title" to='/search/'>
+              Search
+          </Link>
+          <Link className="title" to='/listings/'>
               Listings
-            </NavLink>
-          </li>
-
-          <li className="navbar__bottom__item">
-            <NavLink className="navbar__bottom__item__link" exact to="/about/">
-              About
-            </NavLink>
-          </li>
-
-          <li className="navbar__bottom__item">
-            <NavLink
-              className="navbar__bottom__item__link"
-              exact
-              to="/contact/"
-            >
+          </Link>
+          <Link className="title" to='/contact/'>
               Contact
-            </NavLink>
-          </li>
-        </div>
-      </nav>
-      <Alert />
-    </Fragment>
+          </Link>
+      </div>
+      <div className="content-right">
+          <a href="/login">
+            <button type="button" className="btn btn-dark" data-mdb-ripple-color="dark">
+              <span>Login</span>
+            </button>
+          </a>
+          <a href="/signup">
+            <button type="button" className="btn btn-dark" data-mdb-ripple-color="dark">
+              <span>SignUp</span>
+            </button>
+          </a>
+      </div>
+
+  </nav>
+  
   );
 };
 
-navbar.propTypes = {
-  logout: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-};
-const mapStateToProps = (state) => ({
-  auth: state.auth,
-});
 
-export default connect(mapStateToProps, { logout })(navbar);
+export default Navbar;

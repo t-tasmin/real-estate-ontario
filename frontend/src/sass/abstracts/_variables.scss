@@ -1,21 +1,29 @@
 //Colors
-$color-primary: #328da8;
-$color-secondary: #47acad;
-$color-tertiary: #2fa18a;
+$color-nav: #EFE4B0;
+$color-primary: #333;
+$color-secondary: #F5B57A;
+$color-tertiary: hsl(0, 14%, 89%);
 $color-quaternary: #87369e;
-
 $color-grey-light: #efefef;
 $color-grey-dark: #333;
-
 $color-hover: #edf5f8;
 $color-link-hover: #ccc;
-
 $color-paragraph: #4a4a4a;
-
 $color-green: #34eb49;
-
 $color-white: #fff;
 $color-black: #000;
+
+
+$primaryGreen: #27a39b;
+$primaryBlack: #222222;
+$green : #51cec3;
+$purple : #B762C1;
+$navWhite: #eadfdf;
+$backgroundWhite: #ffffff;
+$navLinkBrown: #666058;
+$primaryGold: #ba9867;
+$primary_color : #BC7869;
+$secondary_color : #F5B57A;
 
 //Font
 $default-font-size: 1.6rem;
@@ -25,3 +33,4 @@ $grid-width: 114rem;
 $gutter-vertical: 4rem;
 $gutter-vertical-small: 2rem;
 $gutter-horizontal: 4rem;
+
