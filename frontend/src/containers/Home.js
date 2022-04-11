@@ -7,22 +7,7 @@ const About = () => {
   const [topSeller, setTopSeller] = useState([]);
   const [realtors, setRealtors] = useState([]);
 
-  useEffect(() => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-    };
-    const getTopSeller = async () => {
-      try {
-        const res = await axios.get(
-          "http://127.0.0.1:8000/api/realtors/topseller/"
-        );
-        setTopSeller(res.data);
-      } catch (err) {}
-    };
-
-    getTopSeller();
-  }, []);
-
+  
   useEffect(() => {
     axios.defaults.headers = {
       "Content-Type": "application/json",
@@ -30,7 +15,7 @@ const About = () => {
 
     const getRealtors = async () => {
       try {
-        const res = await axios.get("http://127.0.0.1:8000/api/realtors/");
+        const res = await axios.get("api/realtors/");
         setRealtors(res.data);
       } catch (err) {}
     };
@@ -45,7 +30,7 @@ const About = () => {
       return allRealtors.push(
         <Fragment key={realtor.id}>
           <div className="about__display">
-            <img className="about__display__image" src={realtor.photo} alt="" />
+            <img className="about__display__realtor_image" src={realtor.image} alt="" />
           </div>
           <h3 className="about__realtor">{realtor.name}</h3>
           <p className="about__contact">{realtor.phone}</p>
@@ -72,33 +57,17 @@ const About = () => {
     return results;
   };
 
-  const getTopSeller = () => {
-    let result = [];
-    topSeller.map((seller) => {
-      return result.push(
-        <Fragment key={seller.id}>
-          <div className="about__display">
-            <img className="about__display__image" src={seller.photo} alt="" />
-          </div>
-          <h3 className="about__topseller">Top Seller:</h3>
-          <p className="about__realtor">{seller.name}</p>
-          <p className="about__contact">{seller.phone}</p>
-          <p className="about__contact">{seller.email}</p>
-          <p className="about__about">{seller.description}</p>
-        </Fragment>
-      );
-    });
-
-    return result;
-  };
+  
   return (
     <main className="about">
       <Helmet>
-        <title> Realest Estate - About</title>
+        <title> Realtor - About</title>
         <meta name="description" content="About us" />
       </Helmet>
       <header className="about__header">
-        <h1 className="about__heading">About Realest Estate</h1>
+         <div className="about__display">
+           <img className="about__display__image" src='/images/house.jpg' alt="" />
+          </div>
       </header>
       <section className="about__info">
         <div className="row">
@@ -107,38 +76,14 @@ const About = () => {
               We find the perfect home for you
             </h2>
             <p className="about__paragraph">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-              vel ultricies orci, a sollicitudin magna. Proin et venenatis elit.
-              Mauris molestie nisi eu tortor porttitor rhoncus. Suspendisse
-              semper purus ac ante sagittis mollis. Mauris vestibulum bibendum
-              purus quis elementum. Aliquam interdum scelerisque quam at rutrum.
-              Vestibulum ut ligula ullamcorper, lacinia diam at, rhoncus risus.
-              Etiam at dolor sollicitudin, tincidunt est vitae, lacinia urna.
-              Etiam fringilla enim et fermentum dapibus. Maecenas et molestie
-              lacus. Proin vel erat justo. Nullam congue erat nec orci auctor,
-              id feugiat libero molestie. Etiam in dui quam.
-            </p>
-            <div className="about__display">
-              <img className="about__display__image" src='/images/house.jpg' alt="" />
-            </div>
-            <p className="about__paragraph">
-              Phasellus efficitur varius pharetra. Donec auctor ultricies risus
-              rutrum lacinia. Curabitur eleifend dui quis mi consectetur, nec
-              egestas ipsum tempus. Quisque id mauris sollicitudin, auctor magna
-              quis, viverra quam. Aliquam lacinia turpis non massa semper
-              consectetur a nec massa. Pellentesque vehicula dolor sit amet nisl
-              semper tincidunt. Morbi luctus metus a hendrerit maximus.
-              Suspendisse tincidunt ornare elit, in accumsan erat commodo et.
-              Aliquam id metus vel justo pharetra convallis. Ut blandit neque
-              sed sagittis faucibus. Nullam nec odio a justo suscipit placerat.
-              Morbi ut dolor nulla. Ut sed suscipit nisi. Donec viverra tortor
-              eget vestibulum tincidunt. Curabitur maximus dolor nisi, at
-              pharetra eros pellentesque in. Nullam imperdiet orci risus, vel
-              tempus ante dapibus ultrices.
+              This app will provide list of all houses currently sold as well as
+              to estimate home value for all available listings in the GTA.
+              Buyers can also obtain an estimated home valuation using machine learning
+              and identify similar nearby sold listings, to help when determining
+              their final offer price!
+
             </p>
           </div>
-
-          <div className="col-1-of-4">{getTopSeller()}</div>
         </div>
       </section>
 

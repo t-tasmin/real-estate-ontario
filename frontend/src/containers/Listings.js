@@ -16,7 +16,7 @@ const Listings = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          `/api/listings?page=${page}&limit=6`
+          `/api/listings?page=${page}&limit=8`
         );
         console.log('Data',res.data);
         setListings(res.data.results);
